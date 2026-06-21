@@ -26,10 +26,10 @@ export default function ResultScreen({ age, stageMode, onRestart }) {
   };
 
   const suspenseMessages = [
-    { text: 'Hmm...', delay: 0.5 },
-    { text: 'Estou captando...', delay: 1.2 },
-    { text: 'Acho que já sei...', delay: 2.0 },
-    { text: 'Sua idade é...', delay: 2.8 },
+    { text: 'Hmm...' },
+    { text: 'Estou captando...' },
+    { text: 'Acho que já sei...' },
+    { text: 'Sua idade é...' },
   ];
 
   return (
@@ -37,7 +37,7 @@ export default function ResultScreen({ age, stageMode, onRestart }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="h-full flex flex-col items-center justify-center px-4 relative"
+      className="absolute inset-0 flex flex-col items-center justify-center px-4"
     >
       {showAge && (
         <motion.div

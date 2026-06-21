@@ -7,7 +7,7 @@ export default function IntroScreen({ onStart, onSettings }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="h-full flex flex-col items-center justify-center px-4 relative"
+      className="absolute inset-0 flex flex-col items-center justify-center px-4"
     >
       <div className="absolute inset-0 bg-gradient-radial pointer-events-none" />
       <div className="absolute top-1/4 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[500px] bg-neon-blue/5 rounded-full blur-[120px] pointer-events-none" />
@@ -17,7 +17,7 @@ export default function IntroScreen({ onStart, onSettings }) {
         animate={{ opacity: 1 }}
         transition={{ delay: 1.5 }}
         onClick={onSettings}
-        className="absolute top-4 right-4 p-2.5 rounded-xl glass-light hover:bg-white/10 transition-all duration-300 group"
+        className="absolute top-4 right-4 p-2.5 rounded-xl glass-light hover:bg-white/10 transition-all duration-300 group z-10"
         aria-label="Configurações"
       >
         <Settings className="w-4 h-4 text-gray-400 group-hover:text-white transition-colors" />
@@ -27,7 +27,7 @@ export default function IntroScreen({ onStart, onSettings }) {
         initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.8, ease: [0.22, 1, 0.36, 1] }}
-        className="text-center max-w-lg"
+        className="text-center max-w-lg relative z-10"
       >
         <motion.div
           initial={{ scale: 0, rotate: -180 }}
@@ -51,7 +51,7 @@ export default function IntroScreen({ onStart, onSettings }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="text-base sm:text-lg text-gray-300 mb-2 font-light"
+          className="text-sm sm:text-lg text-gray-300 mb-2 font-light"
         >
           Pense em uma idade entre 1 e 63 anos e mantenha segredo.
         </motion.p>
@@ -60,7 +60,7 @@ export default function IntroScreen({ onStart, onSettings }) {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.8 }}
-          className="text-sm sm:text-base text-gray-500 mb-8 sm:mb-10"
+          className="text-xs sm:text-base text-gray-500 mb-8 sm:mb-10"
         >
           Vou fazer apenas algumas perguntas.
         </motion.p>
@@ -72,7 +72,7 @@ export default function IntroScreen({ onStart, onSettings }) {
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
           onClick={onStart}
-          className="px-8 py-3 sm:px-10 sm:py-4 bg-gradient-to-r from-neon-blue to-blue-600 text-white font-semibold text-base sm:text-lg rounded-2xl shadow-lg shadow-neon-blue/30 hover:shadow-neon-blue/50 transition-all duration-300 tracking-wide uppercase"
+          className="px-8 py-3 sm:px-10 sm:py-4 bg-gradient-to-r from-neon-blue to-blue-600 text-white font-semibold text-sm sm:text-lg rounded-2xl shadow-lg shadow-neon-blue/30 hover:shadow-neon-blue/50 transition-all duration-300 tracking-wide uppercase"
         >
           Começar
         </motion.button>

@@ -7,7 +7,7 @@ export default function RevealScreen({ onReveal, stageMode, darkReveal }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="h-full flex flex-col items-center justify-center px-4 relative"
+      className="absolute inset-0 flex flex-col items-center justify-center px-4"
     >
       {darkReveal && (
         <div className="absolute inset-0 bg-black/50 pointer-events-none" />
