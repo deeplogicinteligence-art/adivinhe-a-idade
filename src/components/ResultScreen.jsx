@@ -8,18 +8,14 @@ export default function ResultScreen({ age, stageMode, onRestart }) {
 
   useEffect(() => {
     if (!stageMode) {
-      // Animated reveal sequence
       const timers = [];
-
       timers.push(setTimeout(() => setRevealPhase(1), 500));
       timers.push(setTimeout(() => setRevealPhase(2), 1200));
-      timers.push(setTimeout(() => setRevealPhase(2), 2000));
       timers.push(setTimeout(() => setRevealPhase(3), 2800));
       timers.push(setTimeout(() => {
         setRevealPhase(4);
         setShowAge(true);
       }, 3500));
-
       return () => timers.forEach(clearTimeout);
     }
   }, [stageMode]);
@@ -41,9 +37,8 @@ export default function ResultScreen({ age, stageMode, onRestart }) {
       initial={{ opacity: 0 }}
       animate={{ opacity: 1 }}
       exit={{ opacity: 0 }}
-      className="min-h-screen flex flex-col items-center justify-center px-4 relative"
+      className="h-full flex flex-col items-center justify-center px-4 relative"
     >
-      {/* Background glow */}
       {showAge && (
         <motion.div
           initial={{ opacity: 0, scale: 0 }}
@@ -55,7 +50,7 @@ export default function ResultScreen({ age, stageMode, onRestart }) {
 
       <div className="relative z-10 text-center max-w-md">
         {!showAge && !stageMode && (
-          <div className="space-y-6">
+          <div className="space-y-4 sm:space-y-6">
             <AnimatePresence mode="wait">
               {suspenseMessages.map((msg, index) => (
                 revealPhase >= index + 1 && (
@@ -65,7 +60,7 @@ export default function ResultScreen({ age, stageMode, onRestart }) {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -10 }}
                     transition={{ duration: 0.5 }}
-                    className={`text-xl sm:text-2xl ${
+                    className={`text-lg sm:text-2xl ${
                       index === suspenseMessages.length - 1
                         ? 'text-white font-medium'
                         : 'text-gray-400 font-light'
@@ -87,12 +82,12 @@ export default function ResultScreen({ age, stageMode, onRestart }) {
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
-            className="space-y-8"
+            className="space-y-5 sm:space-y-8"
           >
             <motion.p
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
-              className="text-lg text-gray-400 font-light"
+              className="text-base sm:text-lg text-gray-400 font-light"
             >
               Sua idade é
             </motion.p>
@@ -108,10 +103,8 @@ export default function ResultScreen({ age, stageMode, onRestart }) {
               }}
               className="relative"
             >
-              {/* Glow effect */}
               <div className="absolute inset-0 bg-neon-blue/20 rounded-3xl blur-3xl animate-glow" />
-
-              <div className="relative glass rounded-3xl p-10 sm:p-12 border border-neon-blue/30">
+              <div className="relative glass rounded-2xl sm:rounded-3xl p-6 sm:p-10 border border-neon-blue/30">
                 <motion.span
                   initial={{ scale: 0 }}
                   animate={{ scale: 1 }}
@@ -121,14 +114,13 @@ export default function ResultScreen({ age, stageMode, onRestart }) {
                     damping: 20,
                     delay: 0.4,
                   }}
-                  className="text-7xl sm:text-8xl font-bold text-gradient block"
+                  className="text-6xl sm:text-8xl font-bold text-gradient block"
                 >
                   {age}
                 </motion.span>
               </div>
             </motion.div>
 
-            {/* Restart button */}
             <motion.button
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
@@ -136,7 +128,7 @@ export default function ResultScreen({ age, stageMode, onRestart }) {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={onRestart}
-              className="px-10 py-4 bg-gradient-to-r from-neon-blue to-blue-600 text-white font-semibold text-lg rounded-2xl shadow-lg shadow-neon-blue/30 hover:shadow-neon-blue/50 transition-all duration-300 tracking-wide uppercase"
+              className="px-8 py-3 sm:px-10 sm:py-4 bg-gradient-to-r from-neon-blue to-blue-600 text-white font-semibold text-base sm:text-lg rounded-2xl shadow-lg shadow-neon-blue/30 hover:shadow-neon-blue/50 transition-all duration-300 tracking-wide uppercase"
             >
               Recomeçar
             </motion.button>

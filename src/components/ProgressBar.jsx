@@ -2,17 +2,17 @@ import { motion } from 'framer-motion';
 
 export default function ProgressBar({ current, total, progress }) {
   return (
-    <div className="w-full max-w-md mx-auto px-4 pt-6 pb-2">
-      <div className="flex items-center justify-between mb-2">
-        <span className="text-sm text-gray-400 font-medium">
+    <div className="w-full max-w-md mx-auto px-4 pt-3 pb-1 shrink-0">
+      <div className="flex items-center justify-between mb-1.5">
+        <span className="text-xs text-gray-400 font-medium">
           Cartão {current + 1} de {total}
         </span>
-        <span className="text-sm text-neon-glow font-mono font-semibold">
+        <span className="text-xs text-neon-glow font-mono font-semibold">
           {Math.round(progress)}%
         </span>
       </div>
 
-      <div className="w-full h-2 bg-dark-surface rounded-full overflow-hidden">
+      <div className="w-full h-1.5 bg-dark-surface rounded-full overflow-hidden">
         <motion.div
           className="h-full bg-gradient-to-r from-neon-blue to-blue-400 rounded-full"
           initial={{ width: 0 }}
@@ -21,12 +21,11 @@ export default function ProgressBar({ current, total, progress }) {
         />
       </div>
 
-      {/* Dot indicators */}
-      <div className="flex justify-center gap-2 mt-3">
+      <div className="flex justify-center gap-1.5 mt-2">
         {Array.from({ length: total }).map((_, i) => (
           <motion.div
             key={i}
-            className={`w-2 h-2 rounded-full transition-colors duration-300 ${
+            className={`w-1.5 h-1.5 rounded-full transition-colors duration-300 ${
               i < current
                 ? 'bg-neon-blue'
                 : i === current
@@ -35,7 +34,7 @@ export default function ProgressBar({ current, total, progress }) {
             }`}
             animate={
               i === current
-                ? { scale: [1, 1.3, 1] }
+                ? { scale: [1, 1.4, 1] }
                 : { scale: 1 }
             }
             transition={{ duration: 1, repeat: i === current ? Infinity : 0 }}

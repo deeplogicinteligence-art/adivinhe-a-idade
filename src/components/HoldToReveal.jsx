@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 export default function HoldToReveal({ onReveal }) {
   const [isHolding, setIsHolding] = useState(false);
   const [progress, setProgress] = useState(0);
-  const timerRef = useRef(null);
   const intervalRef = useRef(null);
 
   const HOLD_DURATION = 2000;
@@ -13,7 +12,6 @@ export default function HoldToReveal({ onReveal }) {
   const startHold = useCallback(() => {
     setIsHolding(true);
     setProgress(0);
-
     const startTime = Date.now();
 
     intervalRef.current = setInterval(() => {
@@ -34,24 +32,20 @@ export default function HoldToReveal({ onReveal }) {
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
     }
-    if (timerRef.current) {
-      clearTimeout(timerRef.current);
-    }
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center gap-8">
+    <div className="flex flex-col items-center justify-center gap-6 sm:gap-8">
       <motion.p
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        className="text-2xl sm:text-3xl font-light text-gray-300 text-center"
+        className="text-xl sm:text-3xl font-light text-gray-300 text-center"
       >
         Concentre-se...
       </motion.p>
 
       <div className="relative">
-        {/* Progress ring */}
-        <svg className="w-40 h-40 -rotate-90" viewBox="0 0 160 160">
+        <svg className="w-28 h-28 sm:w-40 sm:h-40 -rotate-90" viewBox="0 0 160 160">
           <circle
             cx="80"
             cy="80"
@@ -79,7 +73,6 @@ export default function HoldToReveal({ onReveal }) {
           </defs>
         </svg>
 
-        {/* Hold button */}
         <motion.button
           onMouseDown={startHold}
           onMouseUp={stopHold}
@@ -89,7 +82,7 @@ export default function HoldToReveal({ onReveal }) {
           whileTap={{ scale: 0.95 }}
           className="absolute inset-0 flex items-center justify-center rounded-full glass hover:bg-white/5 transition-colors cursor-pointer select-none"
         >
-          <span className="text-sm text-gray-400 font-medium select-none">
+          <span className="text-xs sm:text-sm text-gray-400 font-medium select-none">
             {isHolding ? 'Segurando...' : 'Segure aqui'}
           </span>
         </motion.button>
