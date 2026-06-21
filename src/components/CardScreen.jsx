@@ -1,0 +1,61 @@
+import { motion, AnimatePresence } from 'framer-motion';
+import { Check, X } from 'lucide-react';
+import AgeGrid from './AgeGrid';
+
+export default function CardScreen({ card, cardIndex, totalCards, onAnswer }) {
+  return (
+    <motion.div
+      initial={{ opacity: 0, x: 50 }}
+      animate={{ opacity: 1, x: 0 }}
+      exit={{ opacity: 0, x: -50 }}
+      transition={{ duration: 0.4, ease: [0.22, 1, 0.36, 1] }}
+      className="flex-1 flex flex-col items-center justify-center px-4 py-8"
+    >
+      {/* Card container */}
+      <div className="w-full max-w-lg glass rounded-3xl p-6 sm:p-8 shadow-2xl">
+        {/* Card header */}
+        <div className="text-center mb-6">
+          <motion.div
+            initial={{ scale: 0 }}
+            animate={{ scale: 1 }}
+            transition={{ type: 'spring', stiffness: 300, damping: 20 }}
+            className="inline-flex items-center justify-center w-14 h-14 rounded-2xl bg-gradient-to-br from-neon-blue/20 to-purple-500/20 border border-neon-blue/30 mb-4"
+          >
+            <span className="text-2xl font-bold text-neon-glow font-mono">
+              {card.value}
+            </span>
+          </motion.div>
+          <h2 className="text-xl font-semibold text-white">
+            Este número está no cartão?
+          </h2>
+        </div>
+
+        {/* Numbers grid */}
+        <AgeGrid numbers={card.numbers} />
+      </div>
+
+      {/* Answer buttons */}
+      <div className="flex gap-4 mt-8 w-full max-w-lg">
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={() => onAnswer(true)}
+          className="flex-1 flex items-center justify-center gap-3 py-4 px-6 bg-emerald-600/20 hover:bg-emerald-600/30 border border-emerald-500/30 text-emerald-400 font-semibold text-lg rounded-2xl transition-all duration-300"
+        >
+          <Check className="w-5 h-5" />
+          Sim
+        </motion.button>
+
+        <motion.button
+          whileHover={{ scale: 1.03 }}
+          whileTap={{ scale: 0.97 }}
+          onClick={() => onAnswer(false)}
+          className="flex-1 flex items-center justify-center gap-3 py-4 px-6 bg-red-600/20 hover:bg-red-600/30 border border-red-500/30 text-red-400 font-semibold text-lg rounded-2xl transition-all duration-300"
+        >
+          <X className="w-5 h-5" />
+          Não
+        </motion.button>
+      </div>
+    </motion.div>
+  );
+}
