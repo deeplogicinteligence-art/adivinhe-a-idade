@@ -20,11 +20,11 @@ export default function CardScreen({ card, cardIndex, totalCards, onAnswer }) {
             className="inline-flex items-center justify-center w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br from-neon-blue/20 to-purple-500/20 border border-neon-blue/30 mb-2 sm:mb-3"
           >
             <span className="text-lg sm:text-xl font-bold text-neon-glow font-mono">
-              {card.value}
+              {card.id}
             </span>
           </motion.div>
           <h2 className="text-base sm:text-lg font-semibold text-white">
-            Este número está no cartão?
+            Cartão {card.id}
           </h2>
         </div>
 
